@@ -3,14 +3,21 @@ import LanguageContext from '../contexts/LanguageContext';
 
 
 class Button extends React.Component {
-   static contextType = LanguageContext
 
    render() {
-      const text = this.context === 'english' ? 'submit' : 'enviar'
       return (
-         <button className="ui primary button">{text}</button>
+         <button className="ui primary button">
+            <LanguageContext.Consumer>
+               {(value) => value === 'english' ? 'Submit' : 'Enviar'  }
+            </LanguageContext.Consumer>
+         </button>
       )
    }
 };
 
 export default Button;
+
+
+
+// static contextType = LanguageContext
+// this is only needed when wanting to use this.context passing
